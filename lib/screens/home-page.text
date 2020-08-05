@@ -1,0 +1,248 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sen_point_clone/untils/constant.dart';
+import 'package:sen_point_clone/widgets/home_carousel.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          primary: true,
+          pinned: true,
+          expandedHeight: 200.0,
+          backgroundColor: Colors.white,
+          // floating: true,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Container(
+              child: Container(
+                color: Colors.pink,
+                child: HeaderCarousel(),
+              ),
+            ),
+            title: Text(''),
+          ),
+          actions: <Widget>[
+            Expanded(
+              child: GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: Colors.grey,),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text('Search...')
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.notifications,
+                size: 35,
+              ),
+              tooltip: 'Show Notifications',
+              onPressed: () {},
+            ),
+            SizedBox(
+              width: 8,
+            )
+          ],
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Container(
+                decoration: BoxDecoration(color: Colors.white),
+                height: 220,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 20.0, left: 15, top: 23),
+                      child: Text(
+                        'Khám phá theo danh mục',
+                        style: TextStyle(
+                          fontSize: fsTitle,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: false,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 15,
+                        itemBuilder: (BuildContext context, int index) =>
+                            Container(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                maxRadius: 40,
+                                backgroundColor: Colors.blue[50],
+                                backgroundImage: NetworkImage(
+                                    "https://img.icons8.com/color/344/strawberry.png"),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Text('data'),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            childCount: 1,
+          ),
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Container(
+                decoration: BoxDecoration(color: Colors.grey[200]),
+                height: 320,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 20.0, left: 15, top: 23),
+                      child: Text(
+                        'Gợi ý từ Sen point',
+                        style: TextStyle(
+                          fontSize: fsTitle,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    CarouselSlider(
+                      options: CarouselOptions(height: 250.0),
+                      items: [1, 2, 3, 4, 5].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(color: Colors.white),
+                              child: Column(
+                                children: [
+                                  Image(
+                                    image: NetworkImage(
+                                        'https://f2.hcm.edu.vn//UploadImages/thcsnguyenduq1/Bai%206%20-%20lop%207.jpg?w=1000'),
+                                    height: 170,
+                                    fit: BoxFit.fitWidth,
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    )
+                  ],
+                ),
+              );
+            },
+            childCount: 1,
+          ),
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Container(
+                decoration: BoxDecoration(color: Colors.grey[200]),
+                height: 320,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 20.0, left: 15, top: 23),
+                      child: Text(
+                        'Gợi ý từ Sen point',
+                        style: TextStyle(
+                          fontSize: fsTitle,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    CarouselSlider(
+                      options: CarouselOptions(height: 250.0),
+                      items: [1, 2, 3, 4, 5].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(color: Colors.white),
+                              child: Column(
+                                children: [
+                                  Image(
+                                    image: NetworkImage(
+                                        'https://f2.hcm.edu.vn//UploadImages/thcsnguyenduq1/Bai%206%20-%20lop%207.jpg?w=1000'),
+                                    height: 170,
+                                    fit: BoxFit.fitWidth,
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    )
+                  ],
+                ),
+              );
+            },
+            childCount: 1,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+class AppBarClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 40);
+    path.quadraticBezierTo(
+      size.width / 2,
+      size.height,
+      size.width,
+      size.height - 40,
+    );
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
